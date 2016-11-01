@@ -8,6 +8,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
 
 @ManagedBean(name = "carListingBean")
 @RequestScoped
@@ -28,6 +31,15 @@ public class MBCarListing {
         carService.saveCar(car.getNewCar());
         car.getCars().add(car.getNewCar());
         car.setNewCar(new CarVo());
+    }
+
+    public void doPark() {
+        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            context.redirect(context.getRequestContextPath() + "/parking.xhtml?id=" + car.getSelectedCar().getLicensePlateNumber());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public MBCar getCar() {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="title">Cars</ui:define>
+        <ui:define name="body">
+            <h:outputStylesheet name="css/registry.css"/>
+            <div class="centered-block">
+                <ui:include src="WEB-INF/includes/parking/parking-content.xhtml"/>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

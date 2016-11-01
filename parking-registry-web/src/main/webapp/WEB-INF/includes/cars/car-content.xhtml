@@ -21,7 +21,7 @@
                 <h:outputText value="#{car.year}"/>
             </p:column>
             <p:column headerText="Brand">
-                <h:outputText value="#{car.brand}"/>
+                <h:outputText value="#{msg['enum.brands.'+=car.brand.name()]}"/>
             </p:column>
             <p:column headerText="Type">
                 <h:outputText value="#{car.type}"/>
@@ -33,23 +33,23 @@
 
         <p:contextMenu for="cars-table" widgetVar="cMenu">
             <p:menuitem value="Park" icon="ui-icon-clock"
-                        action="#{carListingBean.onDeleteCar}"/>
+                        action="#{carListingBean.doPark}"/>
             <p:menuitem value="Delete" update="cars-table" icon="ui-icon-close"
                         actionListener="#{carListingBean.onDeleteCar}"/>
         </p:contextMenu>
     </h:form>
 
     <p:dialog header="Add new car" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade"
-              resizable="false" closeOnEscape="true">
+              resizable="false" closeOnEscape="true" width="350">
         <h:form id="carDialogForm">
-            <p:panel id="panel">
+            <p:panel id="panel" style="padding: 10px 40px;">
                 <h:outputText value="License plate number:"/>
                 <p:inputText styleClass="centered-block centered-text input-text"
                              value="#{carBean.newCar.licensePlateNumber}"
                              required="true" validator="licensePlateNumberValidator"/>
 
                 <h:outputText value="Brand:"/>
-                <p:selectOneMenu styleClass="centered-block centered-text" style="width:125px" required="true"
+                <p:selectOneMenu styleClass="centered-block centered-text" required="true"
                                  value="#{carBean.newCar.brand}">
                     <f:selectItem itemLabel="#{msg['selectonemenu.select']}" itemValue=""/>
                     <f:selectItems value="#{brandBean.brands}" var="brand"
