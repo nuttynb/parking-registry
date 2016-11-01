@@ -1,6 +1,7 @@
 package hu.nutty.interview.ulyssys.parkingregistry.web.managedbeans.request;
 
 import hu.nutty.interview.ulyssys.parkingregistry.service.CarService;
+import hu.nutty.interview.ulyssys.parkingregistry.vo.CarVo;
 import hu.nutty.interview.ulyssys.parkingregistry.web.managedbeans.view.MBCar;
 
 import javax.ejb.EJB;
@@ -20,6 +21,16 @@ public class MBCarListing {
         carService.deleteCar(car.getSelectedCar());
         car.getCars().remove(car.getSelectedCar());
         car.setSelectedCar(null);
+    }
+
+    public void onCreate() {
+        carService.saveCar(car.getNewCar());
+        car.getCars().add(car.getNewCar());
+        car.setNewCar(new CarVo());
+    }
+
+    public void onModify() {
+
     }
 
     public MBCar getCar() {

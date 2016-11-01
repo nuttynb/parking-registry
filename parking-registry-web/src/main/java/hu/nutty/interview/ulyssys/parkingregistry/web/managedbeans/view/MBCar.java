@@ -17,12 +17,14 @@ public class MBCar implements Serializable {
     private static final long serialVersionUID = 2247835822909442706L;
     private List<CarVo> cars;
     private CarVo selectedCar;
+    private CarVo newCar;
     @EJB
     CarService carService;
 
     @PostConstruct
     public void init() {
         cars = carService.findAllCars();
+        newCar = new CarVo();
     }
 
     public List<CarVo> getCars() {
@@ -39,5 +41,13 @@ public class MBCar implements Serializable {
 
     public void setSelectedCar(CarVo selectedCar) {
         this.selectedCar = selectedCar;
+    }
+
+    public CarVo getNewCar() {
+        return newCar;
+    }
+
+    public void setNewCar(CarVo newCar) {
+        this.newCar = newCar;
     }
 }

@@ -8,7 +8,7 @@ public class CarVo implements Serializable {
 
     private static final long serialVersionUID = 7946389195462430050L;
     private String licensePlateNumber;
-    private int year;
+    private Integer year;
     private Brand brand;
     private String type;
     private String color;
@@ -16,7 +16,7 @@ public class CarVo implements Serializable {
     public CarVo() {
     }
 
-    public CarVo(String licensePlateNumber, Brand brand, String type, int year, String color) {
+    public CarVo(String licensePlateNumber, Brand brand, String type, Integer year, String color) {
         this.licensePlateNumber = licensePlateNumber;
         this.brand = brand;
         this.type = type;
@@ -48,11 +48,11 @@ public class CarVo implements Serializable {
         this.type = type;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

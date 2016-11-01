@@ -5,8 +5,12 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <h:form id="form">
+        <p:growl id="growl"/>
         <p:dataTable id="cars" var="car" value="#{carBean.cars}" rowKey="#{car.licensePlateNumber}"
-                     selection="#{carBean.selectedCar}" selectionMode="single">
+                     selection="#{carBean.selectedCar}" selectionMode="single"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
             <f:facet name="header">
                 RightClick to View Options
             </f:facet>
@@ -32,30 +36,50 @@
                         actionListener="#{carListingBean.onDeleteCar}"/>
         </p:contextMenu>
 
-        <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade"
-                  resizable="false">
-            <p:outputPanel id="carDetail" style="text-align:center;">
-                <p:panelGrid columns="2" rendered="#{not empty carBean.selectedCar}"
-                             columnClasses="label,value">
-                    <f:facet name="header">
-                        <p:graphicImage name="demo/images/car/#{carBean.selectedCar.brand}-big.gif"/>
-                    </f:facet>
+        <p:dialog header="Modify car details" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade"
+                  resizable="false" closeOnEscape="true">
+            <h:form id="carDialogForm">
+                <p:panel id="panel">
+                <h:outputText value="License plate number:"/>
+                <p:inputText styleClass="centered-block centered-text input-text"
+                             value="#{carBean.newCar.licensePlateNumber}"
+                             required="true"/>
 
-                    <h:outputText value="Id:"/>
-                    <h:outputText value="#{carBean.selectedCar.id}"/>
+                <h:outputText value="Brand:"/>
+                <p:selectOneMenu styleClass="centered-block centered-text" style="width:125px" required="true"
+                                 value="#{carBean.newCar.brand}">
+                    <f:selectItem itemLabel="#{msg['selectonemenu.select']}" itemValue=""/>
+                    <f:selectItems value="#{brandBean.brands}" var="brand"
+                                   itemLabel="#{msg['enum.brands.'+=brand.name()]}" itemValue="#{brand}"/>
+                </p:selectOneMenu>
 
-                    <h:outputText value="Year"/>
-                    <h:outputText value="#{carBean.selectedCar.year}"/>
+                <h:outputText value="Type:"/>
+                <p:inputText styleClass="centered-block centered-text input-text"
+                             value="#{carBean.newCar.type}"
+                             required="true"/>
 
-                    <h:outputText value="Color:"/>
-                    <h:outputText value="#{carBean.selectedCar.color}"
-                                  style="color:#{carBean.selectedCar.color}"/>
+                <h:outputText value="Year:"/>
+                <p:inputText styleClass="centered-block centered-text input-text"
+                             value="#{carBean.newCar.year}"
+                             required="true"/>
 
-                    <h:outputText value="Price"/>
-                    <h:outputText value="$#{carBean.selectedCar.price}"/>
-                </p:panelGrid>
-            </p:outputPanel>
+                <h:outputText value="Color:"/>
+                <p:inputText styleClass="centered-block centered-text input-text"
+                             value="#{carBean.newCar.color}"
+                             required="true"/>
+                </p:panel>
+
+                <p:commandButton styleClass="centered-block" value="#{msg['dialog.save']}"
+                                 oncomplete="if(!args.validationFailed){PF('carDialog').hide();}"
+                                 icon="ui-icon-check"
+                                 actionListener="#{carListingBean.onCreate}" update=":form:cars :form:growl panel">
+                    <p:resetInput target="panel"/>
+                </p:commandButton>
+
+            </h:form>
         </p:dialog>
+        <p:commandButton styleClass="centered-block" value="Add new car" icon="ui-icon-plus"
+                         onclick="PF('carDialog').show();"/>
     </h:form>
 
 </ui:composition>
