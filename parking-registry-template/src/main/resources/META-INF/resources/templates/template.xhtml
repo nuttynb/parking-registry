@@ -18,40 +18,24 @@
     <h:body>
         <header class="container-fluid header">
             <div class="row">
-                <div class="col-xs-12 col-sm-1 col-md-1">
-                    <h:outputLink value="/../landing/home.xhtml">
-                        <h:graphicImage library="images" name="logo.png" style="width: 100px" class="img-responsive"/>
+                <div class="col-xs-12 col-sm-3 col-md-2">
+                    <h:outputLink value="/registry/cars.xhtml">
+                        <h:graphicImage library="images" name="logo.png" style="width: 200px"/>
                     </h:outputLink>
                 </div>
-                <div class="col-xs-12 col-sm-11 col-md-7">
-                    <h6 class="welcome-text">Welcome to ConOrg!</h6>
+                <div class="col-xs-12 col-sm-9 col-md-8">
+                    <h6 class="welcome-text">Welcome to Parking Registry!</h6>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-4">
+                <div class="col-xs-12 col-sm-12 col-md-2">
                     <h:form>
                         <p:menubar>
-                            <p:menuitem value="Band" url="/../band" icon="fa fa-music"/>
-                            <p:menuitem value="Venue" url="/../venue" icon="fa fa-beer"/>
-                            <p:submenu label="Profile" icon="fa fa-user">
-                                <p:menuitem value="Show" url="/../landing/secured/showProfile.xhtml" icon="fa fa-info"/>
-                                <p:menuitem value="Edit" url="/../landing/secured/editProfile.xhtml" icon="fa fa-edit"/>
-                            </p:submenu>
-                            <p:menuitem value="Admin" url="/../landing/admin/adminLayout.xhtml" icon="fa fa-lock"/>
-                            <p:menuitem value="Explore" url="/../landing/secured/bandsAndVenues.xhtml" icon="fa fa-search"/>
+                            <p:menuitem value="Cars" url="/cars.xhtml"/>
+                            <p:menuitem value="Parking" url="/parking.xhtml"/>
                         </p:menubar>
                     </h:form>
                 </div>
             </div>
         </header>
-
-        <nav>
-            <h:form>
-                <p:breadCrumb>
-                    <ui:insert name="breadCrumb">
-                        <p:menuitem value="Categories" url="/../landing/home.xhtml"/>
-                    </ui:insert>
-                </p:breadCrumb>
-            </h:form>
-        </nav>
 
         <section id="main-content" class="main-content">
             <ui:insert name="body"/>
