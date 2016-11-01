@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xml:lang="en" lang="en">
+
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-theme.min.css"/>
+        <h:outputStylesheet library="css" name="theme.css"/>
+        <title><ui:insert name="title"/></title>
+    </h:head>
+
+    <h:body>
+        <header class="container-fluid header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-1 col-md-1">
+                    <h:outputLink value="/../landing/home.xhtml">
+                        <h:graphicImage library="images" name="logo.png" style="width: 100px" class="img-responsive"/>
+                    </h:outputLink>
+                </div>
+                <div class="col-xs-12 col-sm-11 col-md-7">
+                    <h6 class="welcome-text">Welcome to ConOrg!</h6>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <h:form>
+                        <p:menubar>
+                            <p:menuitem value="Band" url="/../band" icon="fa fa-music"/>
+                            <p:menuitem value="Venue" url="/../venue" icon="fa fa-beer"/>
+                            <p:submenu label="Profile" icon="fa fa-user">
+                                <p:menuitem value="Show" url="/../landing/secured/showProfile.xhtml" icon="fa fa-info"/>
+                                <p:menuitem value="Edit" url="/../landing/secured/editProfile.xhtml" icon="fa fa-edit"/>
+                            </p:submenu>
+                            <p:menuitem value="Admin" url="/../landing/admin/adminLayout.xhtml" icon="fa fa-lock"/>
+                            <p:menuitem value="Explore" url="/../landing/secured/bandsAndVenues.xhtml" icon="fa fa-search"/>
+                        </p:menubar>
+                    </h:form>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <h:form>
+                <p:breadCrumb>
+                    <ui:insert name="breadCrumb">
+                        <p:menuitem value="Categories" url="/../landing/home.xhtml"/>
+                    </ui:insert>
+                </p:breadCrumb>
+            </h:form>
+        </nav>
+
+        <section id="main-content" class="main-content">
+            <ui:insert name="body"/>
+        </section>
+
+        <footer>
+            <span>© 2016 Nagykéri Bence</span>
+        </footer>
+    </h:body>
+</html>

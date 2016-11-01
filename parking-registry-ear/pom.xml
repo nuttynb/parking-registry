@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>hu.nutty.interview.ulyssys</groupId>
+        <artifactId>parking-registry</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>hu.nutty.interview.ulyssys</groupId>
+    <artifactId>parking-registry-ear</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>ear</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>hu.nutty.interview.ulyssys</groupId>
+            <artifactId>parking-registry-service</artifactId>
+            <type>ejb</type>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>hu.nutty.interview.ulyssys</groupId>
+            <artifactId>parking-registry-web</artifactId>
+            <type>war</type>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <version>7</version>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <applicationName>ear</applicationName>
+                    <modules>
+                        <ejbModule>
+                            <groupId>hu.nutty.interview.ulyssys</groupId>
+                            <artifactId>parking-registry-service</artifactId>
+                            <bundleFileName>parking-registry-service</bundleFileName>
+                        </ejbModule>
+                        <webModule>
+                            <groupId>hu.nutty.interview.ulyssys</groupId>
+                            <artifactId>parking-registry-web</artifactId>
+                            <contextRoot>registry</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
