@@ -12,6 +12,7 @@ public class CarVo implements Serializable {
     private Brand brand;
     private String type;
     private String color;
+    private boolean parking;
 
     public CarVo() {
     }
@@ -22,6 +23,7 @@ public class CarVo implements Serializable {
         this.type = type;
         this.year = year;
         this.color = color;
+        this.parking = false;
     }
 
     public String getLicensePlateNumber() {
@@ -62,5 +64,13 @@ public class CarVo implements Serializable {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public boolean isParking() {
+        return parking;
+    }
+
+    public void setParking(boolean parking) {
+        this.parking = parking;
     }
 }

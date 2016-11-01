@@ -24,13 +24,10 @@ public class MBCarListing {
     }
 
     public void onCreate() {
+        carService.findCarByLicensePlateNumber(car.getNewCar().getLicensePlateNumber());
         carService.saveCar(car.getNewCar());
         car.getCars().add(car.getNewCar());
         car.setNewCar(new CarVo());
-    }
-
-    public void onModify() {
-
     }
 
     public MBCar getCar() {

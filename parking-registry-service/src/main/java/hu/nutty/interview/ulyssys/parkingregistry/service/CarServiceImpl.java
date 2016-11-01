@@ -5,6 +5,7 @@ import hu.nutty.interview.ulyssys.parkingregistry.persistence.dao.CarDao;
 import hu.nutty.interview.ulyssys.parkingregistry.vo.CarVo;
 
 import javax.ejb.Local;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;

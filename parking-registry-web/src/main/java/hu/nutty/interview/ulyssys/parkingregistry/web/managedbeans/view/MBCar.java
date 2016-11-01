@@ -27,6 +27,10 @@ public class MBCar implements Serializable {
         newCar = new CarVo();
     }
 
+    public CarVo findCarByLicensePlateNumber(String licenseNumber) {
+        return carService.findCarByLicensePlateNumber(licenseNumber);
+    }
+
     public List<CarVo> getCars() {
         return cars;
     }

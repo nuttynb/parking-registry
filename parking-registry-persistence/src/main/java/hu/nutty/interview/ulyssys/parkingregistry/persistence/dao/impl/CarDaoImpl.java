@@ -4,11 +4,12 @@ import hu.nutty.interview.ulyssys.parkingregistry.persistence.dao.CarDao;
 import hu.nutty.interview.ulyssys.parkingregistry.vo.CarVo;
 import hu.nutty.interview.ulyssys.parkingregistry.vo.enums.Brand;
 
-import javax.enterprise.inject.Model;
+import javax.enterprise.context.ApplicationScoped;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@Model
+@ApplicationScoped
 public class CarDaoImpl implements CarDao {
     private List<CarVo> cars;
 
@@ -35,9 +36,13 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public CarVo findCarByLicensePlateNumber(String licenseNumber) {
-        return cars.stream()
+        Optional<CarVo> car = cars.stream()
                 .filter(c -> c.getLicensePlateNumber().equals(licenseNumber))
-                .findFirst()
-                .get();
+                .findFirst();
+        if (car.isPresent()) {
+            return car.get();
+        } else {
+            return null;
+        }
     }
 }
