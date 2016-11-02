@@ -5,12 +5,11 @@ import hu.nutty.interview.ulyssys.parkingregistry.vo.CarVo;
 import hu.nutty.interview.ulyssys.parkingregistry.web.managedbeans.view.MBCar;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import java.io.IOException;
 
 @ManagedBean(name = "carListingBean")
 @RequestScoped
@@ -21,9 +20,14 @@ public class MBCarListing {
     CarService carService;
 
     public void onDeleteCar() {
-        carService.deleteCar(car.getSelectedCar());
-        car.getCars().remove(car.getSelectedCar());
-        car.setSelectedCar(null);
+        if (!car.getSelectedCar().isParking()) {
+            carService.deleteCar(car.getSelectedCar());
+            car.getCars().remove(car.getSelectedCar());
+            car.setSelectedCar(null);
+        } else {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Cannot delete a parking car.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 
     public void onCreate() {
@@ -33,13 +37,14 @@ public class MBCarListing {
         car.setNewCar(new CarVo());
     }
 
-    public void doPark() {
-        ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+    public String doPark() {
+      /*  ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         try {
             context.redirect(context.getRequestContextPath() + "/parking.xhtml?id=" + car.getSelectedCar().getLicensePlateNumber());
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+        return "/parking.xhtml?faces-redirect=true&id=" + car.getSelectedCar().getLicensePlateNumber();
     }
 
     public MBCar getCar() {

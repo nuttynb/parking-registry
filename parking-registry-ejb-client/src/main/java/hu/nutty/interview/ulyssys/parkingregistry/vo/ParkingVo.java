@@ -1,19 +1,21 @@
 package hu.nutty.interview.ulyssys.parkingregistry.vo;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class ParkingVo implements Serializable {
 
     private static final long serialVersionUID = -6233625115533433250L;
     private String parkingName;
-    private LocalDateTime start;
-    private LocalDateTime end;
+    private Date start;
+    private Date end;
 
     public ParkingVo() {
+        start = new Date();
+        end = new Date();
     }
 
-    public ParkingVo(String parkingName, LocalDateTime start, LocalDateTime end) {
+    public ParkingVo(String parkingName, Date start, Date end) {
         this.parkingName = parkingName;
         this.start = start;
         this.end = end;
@@ -27,19 +29,28 @@ public class ParkingVo implements Serializable {
         this.parkingName = parkingName;
     }
 
-    public LocalDateTime getStart() {
+    public Date getStart() {
         return start;
     }
 
-    public void setStart(LocalDateTime start) {
+    public void setStart(Date start) {
         this.start = start;
     }
 
-    public LocalDateTime getEnd() {
+    public Date getEnd() {
         return end;
     }
 
-    public void setEnd(LocalDateTime end) {
+    public void setEnd(Date end) {
         this.end = end;
+    }
+
+    @Override
+    public String toString() {
+        return "ParkingVo{" +
+                "parkingName='" + parkingName + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
     }
 }

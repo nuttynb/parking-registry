@@ -16,6 +16,14 @@
             <var>msg</var>
         </resource-bundle>
     </application>
+    <navigation-rule>
+        <from-view-id>/parking.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>backToCars</from-outcome>
+            <to-view-id>/cars.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
     <converter>
         <converter-for-class>java.lang.Enum</converter-for-class>
         <converter-class>javax.faces.convert.EnumConverter</converter-class>

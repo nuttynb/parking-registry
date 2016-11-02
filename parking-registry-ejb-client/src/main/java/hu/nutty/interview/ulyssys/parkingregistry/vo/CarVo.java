@@ -73,4 +73,16 @@ public class CarVo implements Serializable {
     public void setParking(boolean parking) {
         this.parking = parking;
     }
+
+    @Override
+    public String toString() {
+        return "CarVo{" +
+                "licensePlateNumber='" + licensePlateNumber + '\'' +
+                ", year=" + year +
+                ", brand=" + brand +
+                ", type='" + type + '\'' +
+                ", color='" + color + '\'' +
+                ", parking=" + parking +
+                '}';
+    }
 }

@@ -9,6 +9,10 @@
         <ui:define name="title">Cars</ui:define>
         <ui:define name="body">
             <h:outputStylesheet name="css/registry.css"/>
+            <f:metadata>
+                <f:viewParam name="id" value="#{parkingBean.carId}"/>
+                <f:event type="preRenderView" listener="#{manageParkingBean.onLoad}"/>
+            </f:metadata>
             <div class="centered-block">
                 <ui:include src="WEB-INF/includes/parking/parking-content.xhtml"/>
             </div>

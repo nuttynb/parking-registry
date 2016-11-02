@@ -4,8 +4,65 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <h:form id="form">
+    <div class="centered-block centered-text">
+        <p:button outcome="backToCars" value="Back" icon="ui-icon-arrowreturnthick-1-w"/>
+        <div>
+            <h:outputText value="#{parkingBean.parkingCar.licensePlateNumber}"/>
+        </div>
+        <div>
+            <h:outputText value="#{parkingBean.parkingCar.brand}"/>
+        </div>
+        <div>
+            <h:outputText value="#{parkingBean.parkingCar.type}"/>
+        </div>
+        <div>
+            <h:outputText value="#{parkingBean.parkingCar.color}"/>
+        </div>
+        <div>
+            <h:outputText value="#{parkingBean.parkingCar.year}"/>
+        </div>
+        <div>
+            <h:outputText id="parking" value="#{parkingBean.parkingCar.parking}"/>
+        </div>
+    </div>
 
-    </h:form>
+    <p:accordionPanel>
+        <p:tab title="PARKING1">
+            <h:form>
+                <p:panelGrid>
+                    <p:outputLabel for="start" value="Start:"/>
+                    <p:calendar id="start" value="#{parkingBean.parking.start}" pattern="MM/dd/yyyy HH:mm:ss"/>
+                    <p:outputLabel for="end" value="End:"/>
+                    <p:calendar id="end" value="#{parkingBean.parking.end}" pattern="MM/dd/yyyy HH:mm:ss"/>
+                </p:panelGrid>
+                <p:commandButton value="Park" icon="ui-icon-clock" actionListener="#{manageParkingBean.onPark}"
+                                 update=":parking"/>
+            </h:form>
+        </p:tab>
+        <p:tab title="PARKING2">
+            <h:form>
+                <p:panelGrid>
+                    <p:outputLabel for="start2" value="Start:"/>
+                    <p:calendar id="start2" value="#{parkingBean.parking.start}" pattern="MM/dd/yyyy HH:mm:ss"/>
+                    <p:outputLabel for="end2" value="End:"/>
+                    <p:calendar id="end2" value="#{parkingBean.parking.end}" pattern="MM/dd/yyyy HH:mm:ss"/>
+                </p:panelGrid>
+                <p:commandButton value="Park" icon="ui-icon-clock" actionListener="#{manageParkingBean.onPark}"
+                                 update=":parking"/>
+            </h:form>
+        </p:tab>
+        <p:tab title="PARKING3">
+            <h:form>
+                <p:panelGrid>
+                    <p:outputLabel for="start3" value="Start:"/>
+                    <p:calendar id="start3" value="#{parkingBean.parking.start}" pattern="MM/dd/yyyy HH:mm:ss"/>
+                    <p:outputLabel for="end3" value="End:"/>
+                    <p:calendar id="end3" value="#{parkingBean.parking.end}" pattern="MM/dd/yyyy HH:mm:ss"/>
+                </p:panelGrid>
+                <p:commandButton value="Park" icon="ui-icon-clock" actionListener="#{manageParkingBean.onPark}"
+                                 update=":parking"/>
+            </h:form>
+        </p:tab>
+    </p:accordionPanel>
 
 </ui:composition>
